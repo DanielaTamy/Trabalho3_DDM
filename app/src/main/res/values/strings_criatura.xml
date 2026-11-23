@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="rotulo_criatura">Nome completo da criatura</string>
+    <string name="exemplo_criatura">Ex.: Hippogriff</string>
+    <string name="criatura_nao_encontrada">Nenhuma criatura encontrada</string>
+    <string name="imagem_indisponivel">Imagem indisponível</string>
+</resources>
