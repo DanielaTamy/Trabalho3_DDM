@@ -37,7 +37,7 @@ class CriaturaActivity : AppCompatActivity() {
         ajustarBarrasDoSistema(findViewById(R.id.raiz_criatura))
 
         campoNome = findViewById(R.id.campo_nome_criatura)
-        botaoBuscar = findViewById(R.id.botao_buscar_criatura) // ajuste o ID conforme seu XML
+        botaoBuscar = findViewById(R.id.botao_buscar_criatura)
         barraProgresso = findViewById(R.id.progresso_criatura)
         textoResultado = findViewById(R.id.resultado_criatura)
         imagemCriatura = findViewById(R.id.imagem_criatura)
@@ -46,7 +46,7 @@ class CriaturaActivity : AppCompatActivity() {
         botaoBuscar.setOnClickListener { buscarCriatura() }
     }
 
-    fun buscarCriatura(view: View? = null) {
+    private fun buscarCriatura() {
         limparEstadoAnterior()
 
         val nome = validarNome(campoNome) ?: return

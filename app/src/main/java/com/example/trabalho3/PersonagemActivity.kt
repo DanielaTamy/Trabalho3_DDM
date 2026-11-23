@@ -41,8 +41,7 @@ class PersonagemActivity : AppCompatActivity() {
             barraProgresso.visibility = View.VISIBLE
 
             try {
-                val resposta = apiHogwarts.buscarPersonagens(nome)
-                val personagem = resposta.dados.orEmpty().firstOrNull()
+                val personagem = encontrarPersonagem(nome)
 
                 if (personagem == null) {
                     textoResultado.setText(R.string.personagem_nao_encontrado)
@@ -69,11 +68,57 @@ class PersonagemActivity : AppCompatActivity() {
 
             } catch (erro: JsonParseException) {
                 textoResultado.setText(R.string.erro_resposta)
-
             } finally {
                 barraProgresso.visibility = View.GONE
                 botaoBuscar.isEnabled = true
             }
         }
+    }
+
+    private suspend fun encontrarPersonagem(nome: String): Personagem? {
+        val termo = nome.replace(Regex("\\s+"), " ")
+
+        if (' ' in termo) {
+            val slug = termo.lowercase().replace(' ', '-')
+            val personagem = try {
+                apiHogwarts.buscarPersonagemPorSlug(slug).personagem
+            } catch (erro: HttpException) {
+                if (erro.code() != 404) throw erro
+                null
+            }
+            if (personagem != null) return personagem
+        }
+
+        var pagina = 1
+        var totalPaginas: Int
+        var primeiroResultado: Personagem? = null
+        var primeiroSobrenome: Personagem? = null
+        var primeiroPrefixo: Personagem? = null
+
+        do {
+            val resposta = apiHogwarts.buscarPersonagens(termo, pagina)
+            val personagens = resposta.dados.orEmpty()
+            val exato = personagens.firstOrNull {
+                it.nome?.trim().equals(termo, ignoreCase = true)
+            }
+            if (exato != null) return exato
+
+            if (primeiroResultado == null) primeiroResultado = personagens.firstOrNull()
+            if (primeiroSobrenome == null) {
+                primeiroSobrenome = personagens.firstOrNull {
+                    it.nome?.trim()?.endsWith(" $termo", ignoreCase = true) == true
+                }
+            }
+            if (primeiroPrefixo == null) {
+                primeiroPrefixo = personagens.firstOrNull {
+                    it.nome?.trim()?.startsWith(termo, ignoreCase = true) == true
+                }
+            }
+
+            totalPaginas = resposta.paginacao?.totalPaginas ?: 1
+            pagina++
+        } while (pagina <= totalPaginas)
+
+        return primeiroSobrenome ?: primeiroPrefixo ?: primeiroResultado
     }
 }
