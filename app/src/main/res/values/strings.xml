@@ -1,3 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Trabalho3</string>
+    <string name="app_name">Grimório de Hogwarts</string>
+    <string name="menu_personagem">Buscar personagem</string>
+    <string name="menu_criatura">Buscar criatura</string>
+    <string name="buscar">Buscar</string>
+    <string name="carregando">Carregando</string>
+    <string name="erro_nome_vazio">Informe um nome</string>
+    <string name="erro_nome_curto">Digite pelo menos 3 caracteres</string>
+    <string name="erro_conexao">Confira sua conexão e tente novamente.</string>
+    <string name="erro_servidor">O servidor não respondeu como esperado. Tente novamente.</string>
+    <string name="erro_resposta">Não foi possível ler a resposta. Tente novamente.</string>
 </resources>
