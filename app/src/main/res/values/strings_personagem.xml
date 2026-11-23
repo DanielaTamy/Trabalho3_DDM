@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="rotulo_personagem">Parte do nome do personagem</string>
+    <string name="exemplo_personagem">Ex.: Weasley</string>
+    <string name="personagem_nao_encontrado">Nenhum personagem encontrado</string>
+    <string name="nao_informado">Não informado</string>
+    <string name="detalhes_personagem">Nome: %1$s\nEspécie: %2$s\nCasa: %3$s</string>
+</resources>

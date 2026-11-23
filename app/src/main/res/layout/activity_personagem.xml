@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/raiz_personagem"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:accessibilityHeading="true"
+            android:text="@string/menu_personagem"
+            android:textSize="26sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:labelFor="@+id/campo_nome_personagem"
+            android:text="@string/rotulo_personagem" />
+
+        <EditText
+            android:id="@id/campo_nome_personagem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/exemplo_personagem"
+            android:inputType="textPersonName"
+            android:maxLines="1" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:onClick="buscarPersonagem"
+            android:text="@string/buscar" />
+
+        <ProgressBar
+            android:id="@+id/progresso_personagem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp"
+            android:contentDescription="@string/carregando"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/resultado_personagem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:accessibilityLiveRegion="polite"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+</ScrollView>
